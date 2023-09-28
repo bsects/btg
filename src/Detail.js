@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, Image, ScrollView, TouchableOpacity } from "react-native";
+import { View, Text, Image, ScrollView, TouchableOpacity, StatusBar } from "react-native";
 import Icon from "react-native-vector-icons/AntDesign";
 import MI from "react-native-vector-icons/MaterialIcons";
 import Ionicons from "react-native-vector-icons/Ionicons";
@@ -13,7 +13,7 @@ export function Detail({navigation, route}) {
 
     const [isSelfOrder, setIsSelfOder] = useState(false)
     const [data, setData] = useState(null);
-    const tamu = route.params ? route.params : [{isMan: true, name:"BAYU SETIAWAN"}];
+    const tamu = route.params ? route.params : [{isMan: true, name:"john doe"}];
     moment.locale("id");
 
     useEffect(() => {
@@ -38,7 +38,7 @@ export function Detail({navigation, route}) {
 
     return(
         <View style={styles.container}>
-            
+            <StatusBar backgroundColor="#335998" barStyle="light-content" />
             <View style={styles.header}>
             <TouchableOpacity>
             <Icon name='arrowleft' size={24} color= "white" />
@@ -105,12 +105,14 @@ export function Detail({navigation, route}) {
                         {data ? moment(data.chosen_hotel.data.get_chosen_hotel.chosen_hotel_params.check_out).format("DD MMMM YYYY") : "-"}
                         </Text>
                     </View>
+                    {data?.chosen_hotel?.data?.get_chosen_hotel?.chosen_hotel_price?.is_refundable ??
                     <View style={[styles.row,{justifyContent:'flex-end'}]}>
                         <MI name="currency-exchange" size={14} color="#FF8136" />
                         <Text style={[styles.orange, {marginLeft:3}]}>
                             Dapat di-refund jika dibatalkan
                         </Text>
                     </View>
+                    }
                 </View>
 
                 <View style={[styles.section, {borderBottomWidth: 0}]}>

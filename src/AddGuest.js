@@ -35,7 +35,7 @@ export function AddGuest ({navigation, route}) {
     const saveTamu = () => {
         const hasEmptyName = tamu.some((guest) => guest.name.trim() === '');
          if (totalTamu < tamu.length) {
-            alert(`Data tamu terlalu banyak!\nAnda hanya bisa mendaftarkan ${totalTamu} nama.`);
+            alert(`Data tamu terlalu banyak!\nAnda hanya bisa mendaftarkan ${totalTamu} nama karena Anda melakukan booking hanya untuk ${totalTamu} orang.`);
           } else if (hasEmptyName) {
             alert('Ada tamu dengan nama kosong. Mohon isi semua nama tamu.');
           } else {
@@ -68,7 +68,6 @@ export function AddGuest ({navigation, route}) {
                         style={[styles.input, {width:"20%", padding:15, backgroundColor: item.isMan ? "lightblue" : "pink"}]}>
                             <Text style={[ styles.blue, styles.bold ]}>{item.isMan ? "MR" : "MRS"}</Text>
                         </TouchableOpacity>
-
 
                         <TextInput style={[styles.input, styles.blue, styles.bold, {width:"60%", marginVertical:1}]}
                         value={item.name.toUpperCase()}
